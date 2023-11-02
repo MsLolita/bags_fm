@@ -52,7 +52,7 @@ class Bags(InitSession):
 
         return await self.approve_binding(oauth_token, oauth_verifier)
 
-    @retry_for_success(max_attempts=10, delay=0)
+    @retry_for_success()
     async def get_oauth_token(self):
         url = 'https://api.bags.fm/api/v1/twitter/login'
 
@@ -67,7 +67,7 @@ class Bags(InitSession):
     def parse_oauth_token(resp_text: str):
         return resp_text.split('?oauth_token=')[1].split('">')[0]
 
-    @retry_for_success(max_attempts=10, delay=0)
+    @retry_for_success()
     async def approve_binding(self, oauth_token: str, oauth_verifier: str):
         url = 'https://api.bags.fm/api/v1/twitter/callback'
 

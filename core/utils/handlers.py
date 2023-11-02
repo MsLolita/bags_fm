@@ -4,7 +4,7 @@ import traceback
 from core.utils import logger
 
 
-def retry_for_success(max_attempts=3, delay=1):
+def retry_for_success(max_attempts=12, delay=0):
     def decorator(func):
         async def wrapper(*args, **kwargs):
             for _ in range(max_attempts):
