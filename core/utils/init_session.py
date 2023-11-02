@@ -1,7 +1,5 @@
 from typing import Optional
 
-
-import aiohttp
 from aiohttp import ClientSession
 from aiohttp_proxy import ProxyConnector
 

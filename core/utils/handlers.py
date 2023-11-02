@@ -1,5 +1,4 @@
 import asyncio
-import traceback
 
 from core.utils import logger
 
@@ -13,7 +12,7 @@ def retry_for_success(max_attempts=12, delay=0):
                     if result:
                         return result
                 except Exception as e:
-                    logger.debug(f"Retry Error: {e} | {traceback.format_exc()}")
+                    logger.debug(f"Retry Error: {e}")
                 await asyncio.sleep(delay)  # Adjust the sleep duration as needed
             raise Exception(f"Unvalid response")
             # return None  # Or raise an exception if needed

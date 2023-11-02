@@ -4,7 +4,6 @@ from asyncio import Semaphore, create_task, gather, sleep
 
 from core.utils import file_to_list, shift_file, logger, CookiesManager
 from core.bags import Bags
-from core.utils.auto_generate import generate_random_emails
 
 from data.config import (
     REFERRAL, THREADS, CUSTOM_DELAY, TWITTERS_FILE_PATH, PROXIES_FILE_PATH
@@ -78,7 +77,8 @@ class AutoReger:
                 logs["ok"] = await bags.register()
         except Exception as e:
             logs["msg"] = e
-            logger.error(f"Error {e} | {traceback.format_exc()}")
+            logger.debug(f"Error: {e} | {traceback.format_exc()}")
+            logger.error(f"Error {e}")
 
         await bags.close()
 

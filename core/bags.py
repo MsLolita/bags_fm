@@ -1,5 +1,3 @@
-import json
-
 from fake_useragent import UserAgent
 
 from core.utils import (
