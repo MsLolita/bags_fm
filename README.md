@@ -28,4 +28,4 @@ Before you get started, make sure to prepare the following:
 
    ![Proxy Configuration](https://github.com/MsLolita/VeloData/assets/58307006/a2c95484-52b6-497a-b89e-73b89d953d8c)
 
-Feel free to customize your GRVT Soft experience to suit your needs! 🚀
+Feel free to customize your Bags_fm Soft experience to suit your needs! 🚀
