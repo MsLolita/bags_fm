@@ -4,12 +4,12 @@ from core.utils import InitSession, logger
 
 
 class Twitter(InitSession):
-    def __init__(self, cookies: Optional[dict] = None) -> None:
-        super().__init__()
+    def __init__(self, cookies: Optional[dict] = None, proxy: Optional[str] = None) -> None:
+        super().__init__(proxy=proxy)
 
         self.cookies = cookies
 
-        headers = {
+        self.headers = {
             'authority': 'api.twitter.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'uk-UA,uk;q=0.9,en-US;q=0.8,en;q=0.7',
@@ -27,8 +27,6 @@ class Twitter(InitSession):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36',
         }
-
-        self.session.headers.update(headers)
 
     async def set_up_cookies(self):
         self.session.cookie_jar.update_cookies(self.cookies)

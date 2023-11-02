@@ -72,7 +72,7 @@ class AutoReger:
                 bags = Bags(cookies, proxy)
                 await AutoReger.custom_delay()
 
-                await bags.define_proxy(proxy)
+                await bags.define_session()
 
                 logs["ok"] = await bags.register()
         except Exception as e:

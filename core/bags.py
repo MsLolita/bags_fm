@@ -13,9 +13,9 @@ class Bags(InitSession):
 
     def __init__(self, cookies: dict, proxy: str | None) -> None:
         super().__init__(proxy=proxy)
-        self.twitter = Twitter(cookies)
+        self.twitter = Twitter(cookies, proxy)
 
-        headers = {
+        self.headers = {
             'authority': 'api.bags.fm',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'uk-UA,uk;q=0.9',
@@ -31,12 +31,13 @@ class Bags(InitSession):
             'user-agent': UserAgent().random,
         }
 
-        self.session.headers.update(headers)
-        self.session.cookie_jar.update_cookies({'invited_by': Bags.referral})
+        self.cookies = {'invited_by': Bags.referral}
 
         self.username = None
 
     async def register(self):
+        await self.twitter.define_session()
+
         await self.twitter.set_up_cookies()
 
         self.username = await self.bind_twitter()

@@ -10,17 +10,20 @@ class InitSession:
     def __init__(self, proxy: Optional[str] = None) -> None:
         self.proxy = proxy
 
-        self.session = ClientSession(
-            connector=ProxyConnector.from_url(self.proxy) if self.proxy else None
-        )
+        self.cookies = None
+        self.headers = None
+        self.session = None
 
-    async def define_proxy(self, proxy: str):
+    async def define_session(self):
         if MOBILE_PROXY:
             await InitSession.change_ip()
             self.proxy = MOBILE_PROXY
 
-        if proxy is not None:
-            self.proxy = f"http://{proxy}"
+        self.session = ClientSession(
+            headers=self.headers,
+            connector=ProxyConnector.from_url(f"http://{self.proxy}") if self.proxy else None,
+            cookies=self.cookies
+        )
 
     @staticmethod
     async def change_ip():
